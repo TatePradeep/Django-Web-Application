@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student View</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Student View</title>
+        
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                background-color: #f2f2f2;
+                margin: 0;
+                padding: 0;
+            }
+    
+            header {
+                background-color: #3498db;
+                color: white;
+                text-align: center;
+                padding: 10px;
+            }
+    
+            main {
+                max-width: 400px;
+                margin: 0 auto;
+                background-color: #fff;
+                padding: 20px;
+                border-radius: 5px;
+                box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            }
+    
+            form {
+                text-align: center;
+            }
+            h2 {
+                color: #3498db;
+            }
+    
+            label {
+                display: block;
+                margin-bottom: 10px;
+                font-weight: bold;
+            }
+    
+            input[type="date"],
+            select {
+                width: 100%;
+                padding: 10px;
+                margin-bottom: 20px;
+                border: 1px solid #ccc;
+                border-radius: 5px;
+            }
+    
+            button[type="button"] {
+                background-color: #3498db;
+                color: white;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+    
+            button[type="button"]:hover {
+                background-color: #2980b9;
+            }
+        </style>
+    </head>
+    
+</head>
+<body>
+    <header>
+        <h1>Student View</h1>
+    </header>
+    <main>
+       <form method="post"  id="event-form">
+        <!--{% csrf_token %}-->
+        
+            <h2>Select Date and Time</h2>
+            <label for="date">Date:</label>
+            <input type="date" id="date" name="date" required><br><br>
+
+            <label for="time">Time:</label>
+            <select id="time" name="time" required>
+                <option value="9:00 AM">9:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="2:00 PM">2:00 PM</option>
+                <option value="4:00 PM">4:00 PM</option>
+                <option value="6:00 PM">6:00 PM</option>
+            </select><br><br>
+
+            <button type="button" onclick="handleButtonClick()">Submit</button>
+            <hr/>
+            <h2>Schedule</h2>
+            <div class="schedule" id="schedule"></div>
+        </form>
+    </main>
+    <script>
+        function handleButtonClick() {
+            var eventDate = document.getElementById("date").value;
+            var eventTime = document.getElementById("time").value;
+
+            if (eventDate && eventTime) {
+                var eventElement = document.createElement("div");
+                eventElement.className = "event";
+                eventElement.innerHTML = "<strong>" + eventDate + "</strong> at " + eventTime;
+
+                document.getElementById("schedule").appendChild(eventElement);
+
+                
+                document.getElementById("event-date").value = "";
+                document.getElementById("event-time").value = "";
+              
+            }
+        }
+    </script>
+   
+</body>
+</html>
+

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tutor Schedule</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            background-color: #3498db;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #3498db;
+        }
+
+        .schedule {
+            margin-top: 20px;
+        }
+
+        .event {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Tutor Schedule</h1>
+    </header>
+    <main>
+        <h2>Add Event</h2>
+        <form method="post" id="event-form">
+            <label for="event-name">Class Name:</label>
+            <input type="text" id="event-name" required><br><br>
+
+            <label for="event-date">Date:</label>
+            <input type="date" id="event-date" required><br><br>
+
+            <label for="event-time">Time:</label>
+            <input type="time" id="event-time" required><br><br>
+
+            <button type="button" onclick="addEvent()">Add Event</button>
+        </form>
+        <hr/>
+        <h2>Schedule</h2>
+        <div class="schedule" id="schedule"></div>
+    </main>
+
+    <script>
+        function addEvent() {
+            var eventName = document.getElementById("event-name").value;
+            var eventDate = document.getElementById("event-date").value;
+            var eventTime = document.getElementById("event-time").value;
+
+            if (eventName && eventDate && eventTime) {
+                var eventElement = document.createElement("div");
+                eventElement.className = "event";
+                eventElement.innerHTML = "<strong>" + eventName + "</strong> on " + eventDate + " at " + eventTime;
+
+                document.getElementById("schedule").appendChild(eventElement);
+
+                document.getElementById("event-name").value = "";
+                document.getElementById("event-date").value = "";
+                document.getElementById("event-time").value = "";
+            }
+        }
+    </script>
+</body>
+</html>
